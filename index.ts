@@ -10,13 +10,13 @@ class Toph{
         this.as = as
     }
 
-    private failure_message_parser( failure_message: string ){
-        return failure_message.replace("$", this.checkee as string)
+    private failure_message_parser( failure_message: string){
+        return failure_message.replace("$", this.as as string)
     }
 
     is_string(failure_message?:string){
         if( typeof this.checkee!=="string" ){
-            throw Error(
+            throw new Error(
                 failure_message?this.failure_message_parser(failure_message):`TypeError: ${this.checkee} should be a string but is ${typeof this.checkee}`
             )
         }
@@ -25,9 +25,8 @@ class Toph{
                 const parsed_rules = parse_rules(rules_string, "string")
                 //TODO - Manage to get autocomplete here
                 for( const parsed_rule of parsed_rules ){
-                    (rules["string"] as Rule[]).find(rule=>parsed_rule===rule.name)!.func( this.checkee, this.as )
+                    return (rules["string"] as Rule[]).find(rule=>parsed_rule===rule.name)!.func( this.checkee, this.as )
                 }
-                return true
             }
         }
     }

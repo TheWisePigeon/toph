@@ -5,3 +5,11 @@ export function parse_rules( rules_string:string, applies_on:"string"|"number"|"
     const rules_names = (rules[`${applies_on}`] as Rule[]).map(rule=>rule.name)
     return rules_string.split(" ").filter(rule=>rules_names.includes(rule))
 }
+
+export class TophError extends Error{
+    constructor(message:string){
+        super(message)
+        this.name = "TophValidationError"
+        this.stack = undefined
+    }
+}
