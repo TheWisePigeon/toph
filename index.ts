@@ -1,3 +1,4 @@
+import { Rule } from "./app"
 import rules from "./rules"
 import { parse_rules } from "./utils"
 class Toph{
@@ -23,9 +24,10 @@ class Toph{
             and: ( rules_string:string )=>{
                 const parsed_rules = parse_rules(rules_string, "string")
                 //TODO - Manage to get autocomplete here
-                for( const rule of parsed_rules ){
-                    rules.string
+                for( const parsed_rule of parsed_rules ){
+                    (rules["string"] as Rule[]).find(rule=>parsed_rule===rule.name)!.func( this.checkee, this.as )
                 }
+                return true
             }
         }
     }
@@ -37,6 +39,6 @@ class Toph{
  * 
  * @param checkee The variable that you want Toph to check
  */
-function check_if( checkee: unknown, as:string ) : Toph {
+export function check_if( checkee: unknown, as:string ) : Toph {
     return new Toph(checkee, as)
 }
