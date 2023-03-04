@@ -1,0 +1,16 @@
+{
+    "name": "toph",
+    "license": "MIT",
+    "version": "0.1.0",
+    "main": "dist/index.js",
+    "module": "dist/index.mjs",
+    "types": "dist/index.d.ts",
+    "scripts": {
+        "build":"tsup index.ts --format cjs,esm --dts",
+        "lint": "tsc"
+    },
+    "devDependencies": {
+        "tsup": "^6.6.3",
+        "typescript": "^4.9.5"
+    }
+}
