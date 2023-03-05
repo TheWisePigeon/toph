@@ -23,9 +23,11 @@ class Toph{
         return {
             and: ( rules_string:string )=>{
                 const parsed_rules = parse_rules(rules_string, "string")
+                const string_rules = rules["string"] as Rule[]
                 //TODO - Manage to get autocomplete here
                 for( const parsed_rule of parsed_rules ){
-                    return (rules["string"] as Rule[]).find(rule=>parsed_rule===rule.name)!.func( this.checkee, this.as )
+                    const found_rule = string_rules.find(rule=>parsed_rule.split(":")[0]===rule.name) as Rule
+                    found_rule.func( this.checkee, this.as, parsed_rule )
                 }
             }
         }
