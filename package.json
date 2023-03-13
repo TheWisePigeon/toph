@@ -1,16 +1,17 @@
 {
-    "name": "toph",
-    "license": "MIT",
-    "version": "0.1.2",
-    "main": "dist/index.js",
-    "module": "dist/index.mjs",
-    "types": "dist/index.d.ts",
-    "scripts": {
-        "build":"tsup index.ts --format cjs,esm --dts",
-        "lint": "tsc"
-    },
-    "devDependencies": {
-        "tsup": "^6.6.3",
-        "typescript": "^4.9.5"
-    }
+  "name": "toph",
+  "license": "MIT",
+  "version": "0.1.2",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsup index.ts --format cjs,esm --dts",
+    "lint": "tsc",
+    "test": "ts-node index.test.ts"
+  },
+  "devDependencies": {
+    "tsup": "^6.6.3",
+    "typescript": "^4.9.5"
+  }
 }

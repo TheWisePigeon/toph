@@ -1,7 +1,6 @@
 import type { Rule } from "../../app";
 import { 
-    is_not_empty, contains, starts_with, ends_with, length, is_valid_email
-} from "./functions";
+    is_not_empty, contains, starts_with, ends_with, length } from "./functions";
 
 const string_rules: Rule[] = [
     {
@@ -15,6 +14,18 @@ const string_rules: Rule[] = [
         nature:"complex",
         applies_on:"string",
         func: contains
+    },
+    {
+        name:"starts_with",
+        nature:"complex",
+        applies_on:"string",
+        func: starts_with
+    },
+    {
+        name:"ends_with",
+        nature:"complex",
+        applies_on:"string",
+        func:ends_with
     }
 ]
 export default string_rules
