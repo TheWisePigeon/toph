@@ -43,7 +43,6 @@ export function starts_with(checkee: unknown, as:string, rule:string){
         return false
     }
     const value_to_contain = rule.split(":")[1] as string
-    console.log(value_to_contain)
     if(value_to_contain.startsWith("'")&&value_to_contain.endsWith("'")){
         if(!(checkee as string).startsWith(value_to_contain.slice(1, -1))){
             let error_message  =`${as} should start with ${value_to_contain} but does not`
