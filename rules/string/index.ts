@@ -26,6 +26,12 @@ const string_rules: Rule[] = [
         nature:"complex",
         applies_on:"string",
         func:ends_with
+    },
+    {
+        name:"length",
+        nature:"complex",
+        applies_on:"string",
+        func:length
     }
 ]
 export default string_rules

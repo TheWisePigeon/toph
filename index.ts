@@ -33,6 +33,11 @@ class Toph{
         }
     }
 
+    is_number( failure_message: string ){
+        if(typeof this.checkee!=="number"){
+
+        }
+    }
 
 }
 
