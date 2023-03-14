@@ -1,6 +1,6 @@
 import { Rule } from "./app"
 import rules from "./rules"
-import { parse_rules } from "./utils"
+import { parse_rules, TophError } from "./utils"
 class Toph{
     private checkee: unknown
     private as: string
@@ -16,8 +16,8 @@ class Toph{
 
     is_string(failure_message?:string){
         if( typeof this.checkee!=="string" ){
-            throw new Error(
-                failure_message?this.failure_message_parser(failure_message):`TypeError: ${this.checkee} should be a string but is ${typeof this.checkee}`
+            throw new TophError(
+                failure_message?this.failure_message_parser(failure_message):`TypeError: ${this.checkee} should be a string but is of type ${typeof this.checkee}`
             )
         }
         return {
@@ -35,7 +35,27 @@ class Toph{
 
     is_number( failure_message: string ){
         if(typeof this.checkee!=="number"){
+            throw new TophError(
+                failure_message?this.failure_message_parser(failure_message):`TypeError: ${this.checkee} should be a number but is of type ${typeof this.checkee}`
+            )
+        }
+        return {
+            and: (rules_string:string)=>{
+                const parsed_rules = parse_rules(rules_string, "number")
+                const number_rules = rules["number"] as Rule[]
+                 for( const parsed_rule of parsed_rules ){
+                    const found_rule = number_rules.find(rule=>parsed_rule.split(":")[0]===rule.name) as Rule
+                    found_rule.func( this.checkee, this.as, parsed_rule )
+                }               
+            }
+        }
+    }
 
+    is_boolean(failure_message: string){
+        if(typeof this.checkee!=="boolean"){
+            throw new TophError(
+                failure_message?this.failure_message_parser(failure_message):`TypeError: ${this.checkee} should be a boolean but is of type ${typeof this.checkee}`
+            )
         }
     }
 
